@@ -68,8 +68,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-        <Header />
+      <div className="pt-[4.75rem] lg:-mt-20 overflow-hidden">
         <Section
           className="pt-[12rem] -mt-[5.25rem]"
           crosses
@@ -189,7 +188,6 @@ const SignUp = () => {
             </div>
           </div>
         </Section>
-        <Footer />
       </div>
 
       <ButtonGradient />

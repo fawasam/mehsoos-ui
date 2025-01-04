@@ -195,7 +195,6 @@ const Checkout = () => {
   return (
     <>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-        <Header />
         <Section
           className="pt-[6rem] -mt-[5.25rem]"
           crosses
@@ -212,7 +211,6 @@ const Checkout = () => {
             </div>
           </div>
         </Section>
-        <Footer />
       </div>
       <ButtonGradient />
     </>

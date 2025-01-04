@@ -76,7 +76,6 @@ const Login = () => {
   return (
     <>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-        <Header />
         <Section
           className="pt-[12rem] -mt-[5.25rem]"
           crosses
@@ -160,8 +159,6 @@ const Login = () => {
             </div>
           </div>
         </Section>
-
-        <Footer />
       </div>
 
       <ButtonGradient />
