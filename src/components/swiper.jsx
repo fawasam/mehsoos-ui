@@ -12,7 +12,7 @@ const staticBannerData = [
     id: 1,
     ImageOrVideo: {
       mime: "image/jpeg",
-      url: "/src/assets/services/service-1.png",
+      url: "/src/assets/5ty.png",
       alternativeText: "Banner 1",
     },
     title: "Welcome to Our Store",
@@ -105,44 +105,13 @@ export default function MySwiper() {
     if (!item?.title && !item?.heading && !item?.desc) return null;
 
     return (
-      <div className="container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-        <div className="content max-w-[800px] w-full">
-          {item?.title && (
-            <h6 className="text-[22px] font-light text-[#E4E4E4] line-clamp-1">
-              {item.title}
-            </h6>
-          )}
-          {item?.heading && (
-            <h1 className="text-[60px] font-bold text-white leading-[65px] mt-[13px] line-clamp-2 max-md:text-[44px] max-md:leading-[55px] max-md:line-clamp-3">
-              {item.heading}
-            </h1>
-          )}
-          {item?.desc && (
-            <p className="text-[16px] leading-[24px] text-white mt-[22px] font-light line-clamp-4">
-              {item.desc}
-            </p>
-          )}
-          {item?.button && (
-            <div className="btn_wrapper max-w-[186px] mt-[38px]">
-              <a href={item.button.link || "#"}>
-                <button name={item.button.text} />
-              </a>
-            </div>
-          )}
-        </div>
-      </div>
+      <div className="container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"></div>
     );
   };
 
   const renderBannerContent = (item) => {
     const content = (
-      <div
-        className={`banner_wrapper relative h-[556px] w-full mt-[80px] ${
-          item?.title || item?.heading || item?.desc
-            ? "after:absolute after:inset-0 after:bg-black after:opacity-70"
-            : ""
-        }`}
-      >
+      <div className="banner_wrapper relative h-[406px] md:h-screen w-full">
         {renderMedia(item?.ImageOrVideo)}
         {renderSlideContent(item)}
       </div>
@@ -157,7 +126,7 @@ export default function MySwiper() {
   };
 
   return (
-    <Section
+    <div
       className=""
       crosses
       crossesOffset="lg:translate-y-[5.25rem]"
@@ -171,10 +140,10 @@ export default function MySwiper() {
         slidesPerView={1}
         grabCursor={true}
         freeMode={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // }}
         loop={true}
         speed={1200}
         navigation={{
@@ -194,8 +163,8 @@ export default function MySwiper() {
         {staticBannerData?.map((item) => (
           <SwiperSlide key={item.id}>{renderBannerContent(item)}</SwiperSlide>
         ))}
+        <div className="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-t from-[#07081E] to-transparent z-10" />
       </Swiper>
-      {/* <BottomLine /> */}
-    </Section>
+    </div>
   );
 }

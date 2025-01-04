@@ -6,13 +6,13 @@ import { roadmap } from "../constants";
 import { check2, grid, loading1 } from "../assets";
 import { Gradient } from "./design/Roadmap";
 import CountdownDisplay from "./design/Timer";
+import Ticket from "../components/Ticket";
 
 const Counter = () => {
   const item = roadmap[0];
   return (
-    <Section className="overflow-hidden" id="roadmap">
-      <div className="container md:pb-10">
-        <Heading title="Daily Lottery" />
+    <div className="overflow-hidden" id="roadmap">
+      <div className="container md:pb-10 md:mt-16 mt-10">
         <div className="relative grid gap-1 md:gap-4 md:pb-[7rem]">
           <div
             className={` even:md:translate-y-[7rem] p-0.25 rounded-[2.5rem] ${
@@ -36,8 +36,9 @@ const Counter = () => {
         {/* <div className="flex justify-center mt-12 md:mt-6 xl:mt-6">
           <Button href="/roadmap">Our roadmap</Button>
         </div> */}
+        <Ticket className="md:-mt-10 mt-10 mb-10" />
       </div>
-    </Section>
+    </div>
   );
 };
 export default Counter;
