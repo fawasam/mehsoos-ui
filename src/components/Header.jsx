@@ -9,9 +9,12 @@ import { Link } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { useCart } from "../context/CartContext";
 import GradientTitle from "./GradientTitle";
+import { useUser } from "../context/UserContext";
+import { IoExitOutline } from "react-icons/io5";
 
 const Header = () => {
   const { items } = useCart();
+  const { token } = useUser();
 
   const pathname = useLocation();
   const [openNavigation, setOpenNavigation] = useState(false);
@@ -72,21 +75,40 @@ const Header = () => {
           <HamburgerMenu />
         </nav>
 
-        <Link
-          to="/signup"
-          className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
-        >
-          New account
-        </Link>
-        <Button className="hidden lg:flex" href={"/login"}>
-          Sign in
-        </Button>
+        {token ? (
+          <>
+            <Link
+              to="/user-profile"
+              className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
+            >
+              Profile{" "}
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/signup"
+              className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
+            >
+              New account
+            </Link>
+            <Button className="hidden lg:flex" href={"/login"}>
+              Sign in
+            </Button>
+          </>
+        )}
+
         <Link to={"/cart"} className="cursor-pointer relative">
           <span className="absolute right-0 top-0 transform translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center h-5 w-5 shadow-lg border border-white">
             {items.length}
           </span>
           <CiShoppingCart className="ml-6" size={30} />
         </Link>
+        {token && (
+          <Link to={"/logout"} className="cursor-pointer relative">
+            <IoExitOutline className="ml-6" size={30} />
+          </Link>
+        )}
 
         <Button
           className="ml-auto lg:hidden"

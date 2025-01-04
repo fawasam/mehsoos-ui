@@ -14,6 +14,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Swiper from "../components/swiper";
 import AgeVerification from "../components/AgeVerification";
+import Logout from "../pages/Logout";
 import UserDetail from "../pages/UserDetail";
 
 const Layout = ({ children }) => (
@@ -21,7 +22,6 @@ const Layout = ({ children }) => (
     <Header />
     <AgeVerification />
     <main>{children}</main>
-
     <Footer />
   </>
 );
@@ -108,6 +108,10 @@ const MainRoute = () => {
           <HowItWorksPage />,
         </Layout>
       ),
+    },
+    {
+      path: PathConstants.LOGOUT,
+      element: <Logout />,
     },
   ];
 
