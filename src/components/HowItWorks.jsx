@@ -7,8 +7,8 @@ import ClipPath from "../assets/svg/ClipPath";
 
 const HowItWorks = () => {
   return (
-    <Section id="features">
-      <div className="container relative z-2">
+    <div id="features" className="md:mt-2 mt-16">
+      <div className="flex  flex-col items-center justify-center relative z-2">
         <Heading
           className="md:max-w-md lg:max-w-2xl"
           tag="Want to see how"
@@ -65,7 +65,7 @@ const HowItWorks = () => {
           ))}
         </div>
       </div>
-    </Section>
+    </div>
   );
 };
 
