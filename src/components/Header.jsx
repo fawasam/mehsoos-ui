@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { useCart } from "../context/CartContext";
+import GradientTitle from "./GradientTitle";
 
 const Header = () => {
   const { items } = useCart();
@@ -40,7 +41,7 @@ const Header = () => {
     >
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4 relative">
         <Link className="block w-[12rem] xl:mr-8" to="/">
-          <span className="text-4xl font-bold ml-3  ">Mehsoos</span>
+          <GradientTitle />
           {/* <img src={brainwave} width={190} height={40} alt="Mehsoos" /> */}
         </Link>
 

@@ -12,11 +12,15 @@ import TicketPage from "../pages/Ticket";
 import HowItWorksPage from "../pages/HowWorks";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Swiper from "../components/swiper";
+import AgeVerification from "../components/AgeVerification";
 
 const Layout = ({ children }) => (
   <>
     <Header />
+    <AgeVerification />
     <main>{children}</main>
+
     <Footer />
   </>
 );
@@ -27,6 +31,7 @@ const MainRoute = () => {
       path: PathConstants.HOME,
       element: (
         <Layout>
+          <Swiper />
           <Home />
         </Layout>
       ),
