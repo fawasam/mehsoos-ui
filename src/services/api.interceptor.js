@@ -1,5 +1,4 @@
 import axios from "axios";
-import { redirect } from "react-router-dom";
 
 // const BASE_URL = "https://tiktik.ap-southeast-2.elasticbeanstalk.com";
 // const BASE_URL = "https://api.talkiyo.xyz";
@@ -19,7 +18,7 @@ api.interceptors.request.use(
 
     // If an access token exists, set the Authorization header
     if (accessToken) {
-      config.headers.Authorization = `${accessToken}`;
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;
@@ -29,22 +28,22 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    const originalRequest = error.config;
+// api.interceptors.response.use(
+//   (response) => {
+//     return response;
+//   },
+//   async (error) => {
+//     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      console.log("expired");
-      redirect("/");
-      window.location.replace("/");
-      return Promise.reject(error);
-    }
-    return Promise.reject(error);
-  }
-);
+//     if (error.response?.status === 401 && !originalRequest._retry) {
+//       originalRequest._retry = true;
+//     //   console.log("expired");
+//     //   redirect("/");
+//     //   window.location.replace("/");
+//       return Promise.reject(error);
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export default api;

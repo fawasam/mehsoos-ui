@@ -6,10 +6,11 @@ import Header from "../Header";
 import Section from "../Section";
 import { Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 const Cart = () => {
   const { items, total, removeFromCart } = useCart();
-  const isAuthenticated = localStorage.getItem("token");
+  const { token } = useUser();
 
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -17,7 +18,7 @@ const Cart = () => {
   const handleCheckout = async () => {
     setIsProcessing(true);
     try {
-      if (isAuthenticated) {
+      if (!token) {
         // Store current cart URL in session storage to redirect back after login
         sessionStorage.setItem("redirectAfterLogin", "/cart");
         navigate("/login");

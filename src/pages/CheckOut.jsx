@@ -10,12 +10,12 @@ import {
 import ButtonGradient from "../assets/svg/ButtonGradient";
 
 import { Loader2 } from "lucide-react";
-import Header from "../components/Header";
 import Section from "../components/Section";
-import Footer from "../components/Footer";
 
 // Initialize Stripe (replace with your publishable key)
-const stripePromise = loadStripe("your_publishable_key_here");
+const stripePromise = loadStripe(
+  "sk_test_51JYaAdSEOklscpJEpAb6WIXmldUBW6ZFeaE51M3YY1ydcg79xoglfU8CVVctPrcaks010FMdo8wIKcUS0kjgGNi900lmEiiovb"
+);
 
 const CheckoutForm = () => {
   const stripe = useStripe();

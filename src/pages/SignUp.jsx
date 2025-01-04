@@ -77,6 +77,11 @@ const SignUp = () => {
             console.log(res);
             setToken(res?.data?.result?.token);
             toast.success(res?.data?.message);
+
+            const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+            sessionStorage.removeItem("redirectAfterLogin");
+
+            navigate(redirectUrl || "/user-profile");
           })
           .catch((error) => {
             toast.error(error?.response?.data?.message);

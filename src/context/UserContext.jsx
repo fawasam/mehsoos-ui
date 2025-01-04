@@ -1,13 +1,17 @@
+import api from "../services/api.interceptor";
 import { createContext, useContext, useReducer, useEffect } from "react";
 
 // Define initial state
 const initialState = {
   token: null,
+  userData: null,
 };
 
+console.log("initialState", initialState);
 // Define action types
 const SET_TOKEN = "SET_TOKEN";
 const REMOVE_TOKEN = "REMOVE_TOKEN"; // Action to remove the token
+const SET_USER_DATA = "SET_USER_DATA"; // Action to set user data
 
 // Define reducer
 const userReducer = (state, action) => {
@@ -20,7 +24,14 @@ const userReducer = (state, action) => {
     case REMOVE_TOKEN:
       return {
         ...state,
-        token: null, // Set token to null when removed
+        token: null,
+        userData: null,
+      };
+
+    case SET_USER_DATA:
+      return {
+        ...state,
+        userData: action.payload,
       };
 
     default:
@@ -40,6 +51,7 @@ export const UserProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       dispatch({ type: SET_TOKEN, payload: token });
+      fetchUserDetails(token);
     }
   }, []);
 
@@ -52,6 +64,21 @@ export const UserProvider = ({ children }) => {
   const removeToken = () => {
     localStorage.removeItem("token");
     dispatch({ type: REMOVE_TOKEN });
+  };
+
+  const fetchUserDetails = async () => {
+    try {
+      await api
+        .post("/user-details")
+        .then((res) => {
+          dispatch({ type: SET_USER_DATA, payload: res?.data?.data?.result });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
   };
 
   return (

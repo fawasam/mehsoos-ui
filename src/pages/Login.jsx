@@ -13,11 +13,11 @@ const Login = () => {
   const { token, setToken } = useUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     navigate("/");
-  //   }
-  // });
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  });
 
   const [formData, setFormData] = useState({
     email: "",
@@ -85,6 +85,11 @@ const Login = () => {
             console.log(res);
             setToken(res?.data?.result?.token);
             toast.success(res?.data?.message);
+
+            const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+            sessionStorage.removeItem("redirectAfterLogin"); 
+
+            navigate(redirectUrl || "/user-profile");
           })
           .catch((error) => {
             toast.error(error?.response?.data?.message);

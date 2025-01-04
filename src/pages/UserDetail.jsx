@@ -1,10 +1,35 @@
-import React from "react";
+import api from "../services/api.interceptor";
 import { Calendar, Ticket, Wallet, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const UserDetail = () => {
+const UserDetail = ({ data }) => {
+  console.log(data);
+
+  const [ticketDetails, setTicketDetails] = useState(null);
+
+  useEffect(() => {
+    fetchTicketDetails();
+  }, []);
+
+  console.log("ticketDetails", ticketDetails);
+
+  const fetchTicketDetails = async () => {
+    try {
+      await api
+        .post("/user-tickets")
+        .then((res) => {
+          setTicketDetails(res?.data?.result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
   const userData = {
-    walletBalance: "1.245 ETH",
-    totalTickets: 25,
+    walletBalance: "0 AUR",
+    totalTickets: data?.ticketCount,
     upcomingDraws: [
       {
         id: 1,
@@ -26,12 +51,14 @@ const UserDetail = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h3 className="text-red-500 text-2xl font-semibold mb-4">JohnDoe</h3>
+          <h3 className="text-red-500 text-2xl font-semibold mb-4">
+            {data?.name}
+          </h3>
           <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 text-transparent bg-clip-text">
             Your Profile Details
           </h2>
           <p className="text-gray-400 text-sm md:text-base max-w-3xl mx-auto mb-2">
-            johndoe@gmail.com
+            {data?.email}
           </p>
           <p className="text-gray-400 text-sm md:text-base max-w-3xl mx-auto">
             Track your lottery participation, check your wallet balance, and
