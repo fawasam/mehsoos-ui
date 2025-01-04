@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonGradient from "../assets/svg/ButtonGradient";
-import Header from "../components/Header";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import Section from "../components/Section";
-import Footer from "../components/Footer";
+import { useUser } from "../context/UserContext";
+import api from "../services/api.interceptor";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { token, setToken } = useUser();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  });
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +34,6 @@ const SignUp = () => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -54,15 +65,30 @@ const SignUp = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const newErrors = validateForm();
-
-    if (Object.keys(newErrors).length === 0) {
-      // Handle successful form submission here
-      console.log("Form submitted:", formData);
-    } else {
-      setErrors(newErrors);
+    try {
+      if (Object.keys(newErrors).length === 0) {
+        await api
+          .post("/register", formData)
+          .then((res) => {
+            console.log(res);
+            setToken(res?.data?.result?.token);
+            toast.success(res?.data?.message);
+          })
+          .catch((error) => {
+            toast.error(error?.response?.data?.message);
+          });
+      } else {
+        setErrors(newErrors);
+      }
+    } catch (error) {
+      toast.error(error);
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -168,9 +194,15 @@ const SignUp = () => {
                     <p className="text-sm text-red-500">{errors.acceptTerms}</p>
                   )}
                   <div className="flex justify-end">
-                    <Button px="px-3" type="submit">
-                      Sign Up
-                    </Button>
+                    {isSubmitting ? (
+                      <Button px="px-3" type="submit">
+                        Submitting
+                      </Button>
+                    ) : (
+                      <Button px="px-3" type="submit">
+                        Sign Up
+                      </Button>
+                    )}
                   </div>
                   <div className="text-center mt-14">
                     <p className="text-sm text-gray-600">

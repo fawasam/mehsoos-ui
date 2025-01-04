@@ -10,6 +10,7 @@ const PathConstants = {
   USER_PROFILE: "/user-profile",
   TICKET: "/ticket",
   HOW_IT_WORKS: "/how-to-use",
+  LOGOUT: "/logout",
 };
 
 export default PathConstants;

@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonGradient from "../assets/svg/ButtonGradient";
-import Header from "../components/Header";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
 import Section from "../components/Section";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api.interceptor";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { token, setToken } = useUser();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     navigate("/");
+  //   }
+  // });
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,22 +37,22 @@ const Login = () => {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
-    try {
-      // Your login logic here
-      // After successful login:
-      localStorage.setItem("token", "your-auth-token");
+    // try {
+    //   // Your login logic here
+    //   // After successful login:
+    //   localStorage.setItem("token", "your-auth-token");
 
-      // Check for redirect URL
-      const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
-      sessionStorage.removeItem("redirectAfterLogin"); // Clear the stored URL
+    //   // Check for redirect URL
+    //   const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+    //   sessionStorage.removeItem("redirectAfterLogin"); // Clear the stored URL
 
-      // Navigate to stored URL or default dashboard
-      navigate(redirectUrl || "/dashboard");
-    } catch (error) {
-      console.error("Login failed:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    //   // Navigate to stored URL or default dashboard
+    //   navigate(redirectUrl || "/dashboard");
+    // } catch (error) {
+    //   console.error("Login failed:", error);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const validateForm = () => {
@@ -61,15 +73,30 @@ const Login = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const newErrors = validateForm();
-
-    if (Object.keys(newErrors).length === 0) {
-      // Handle successful form submission here
-      console.log("Form submitted:", formData);
-    } else {
-      setErrors(newErrors);
+    try {
+      if (Object.keys(newErrors).length === 0) {
+        await api
+          .post("/login", formData)
+          .then((res) => {
+            console.log(res);
+            setToken(res?.data?.result?.token);
+            toast.success(res?.data?.message);
+          })
+          .catch((error) => {
+            toast.error(error?.response?.data?.message);
+          });
+      } else {
+        setErrors(newErrors);
+      }
+    } catch (error) {
+      toast.error(error);
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -139,9 +166,15 @@ const Login = () => {
                     <p className="text-sm text-red-500">{errors.acceptTerms}</p>
                   )}
                   <div className="flex justify-end">
-                    <Button px="px-3" type="submit">
-                      Log In{" "}
-                    </Button>
+                    {isSubmitting ? (
+                      <Button px="px-3" type="submit">
+                        Login
+                      </Button>
+                    ) : (
+                      <Button px="px-3" type="submit">
+                        Log In
+                      </Button>
+                    )}
                   </div>
                   <div className="text-center mt-14">
                     <p className="text-sm text-gray-600">
