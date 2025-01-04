@@ -70,7 +70,7 @@ const Cart = () => {
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="text-white font-bold">
-                              AED {item.price}
+                              USD {item.price}
                             </div>
                             <button
                               onClick={() => removeFromCart(item.id)}
@@ -89,7 +89,7 @@ const Cart = () => {
                           Total Amount
                         </div>
                         <div className="text-2xl font-bold text-white">
-                          AED {total}
+                          USD {total}
                         </div>
                       </div>
                     </div>

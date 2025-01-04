@@ -12,9 +12,9 @@ const LatestDrawResult = () => {
   ];
 
   const luckyResults = [
-    { ticket: "BY4934604", prize: "AED 100,000" },
-    { ticket: "AP1493831", prize: "AED 100,000" },
-    { ticket: "CP6663669", prize: "AED 100,000" },
+    { ticket: "BY4934604", prize: "USD 100,000" },
+    { ticket: "AP1493831", prize: "USD 100,000" },
+    { ticket: "CP6663669", prize: "USD 100,000" },
   ];
 
   return (

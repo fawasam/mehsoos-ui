@@ -152,13 +152,13 @@ const CheckoutForm = () => {
           {items.map((item) => (
             <div key={item.id} className="flex justify-between text-gray-300">
               <span>Line Numbers: {item.numbers.join(", ")}</span>
-              <span>AED {item.price}</span>
+              <span>USD {item.price}</span>
             </div>
           ))}
           <div className="border-t border-[#3A3A3A] pt-4 mt-4">
             <div className="flex justify-between text-xl font-bold text-white">
               <span>Total</span>
-              <span>AED {total}</span>
+              <span>USD {total}</span>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ const CheckoutForm = () => {
             Processing...
           </>
         ) : (
-          `Pay AED ${total}`
+          `Pay USD ${total}`
         )}
       </button>
     </form>

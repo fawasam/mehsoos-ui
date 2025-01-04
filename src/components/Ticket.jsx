@@ -23,7 +23,7 @@ const Ticket = ({ className = "" }) => {
               </h2>
               <div className="inline-flex flex-col space-y-2">
                 <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
-                  AED
+                  USD
                 </span>
                 <span className="text-5xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-purple-500 via-fuchsia-400 to-pink-400 inline-block text-transparent bg-clip-text drop-shadow-lg">
                   100,000,000
@@ -37,14 +37,14 @@ const Ticket = ({ className = "" }) => {
                 Guaranteed Lucky Chance Draw
               </h3>
               <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-300 to-pink-200 bg-clip-text text-transparent">
-                AED 100,000 * 7 Winners
+                USD 100,000 * 7 Winners
               </p>
             </div>
 
             {/* Entry price */}
             <div className="text-center mb-8">
               <p className="text-xl sm:text-2xl bg-gradient-to-r from-cyan-300 to-blue-200 bg-clip-text text-transparent font-bold">
-                1 Entry for AED 50
+                1 Entry for USD 50
               </p>
             </div>
 
