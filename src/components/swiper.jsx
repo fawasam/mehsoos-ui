@@ -140,10 +140,10 @@ export default function MySwiper() {
         slidesPerView={1}
         grabCursor={true}
         freeMode={true}
-        // autoplay={{
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         loop={true}
         speed={1200}
         navigation={{
