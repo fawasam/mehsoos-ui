@@ -1,9 +1,19 @@
-
 const GradientTitle = () => {
   return (
-    <span className="text-2xl font-bold ml-3 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 inline-block text-transparent bg-clip-text">
-      Mehzoozeuromillion
-    </span>
+    <>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+      <span
+        className="text-2xl font-bold ml-3 bg-gradient-to-r from-blue-400 via-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text"
+        style={{
+          fontFamily: "cursive", // Replace with the exact font
+        }}
+      >
+        Mehzoozeuromillion
+      </span>
+    </>
   );
 };
 

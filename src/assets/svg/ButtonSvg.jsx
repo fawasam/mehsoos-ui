@@ -18,7 +18,7 @@ const ButtonSvg = (white) => (
       height="44"
       viewBox="0 0 100 44"
       preserveAspectRatio="none"
-      fill={white ? "white" : "none"}
+      fill={white ? "black" : "none"}
     >
       {white ? (
         <polygon

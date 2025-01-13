@@ -51,10 +51,10 @@ const NumberLineSelector = () => {
 
   return (
     <div className="flex flex-col max-w-xl mx-auto">
-      <div className="bg-gradient-to-r from-[#07081E] to-blue-950 rounded-3xl p-6 shadow-xl">
+      <div className="bg-white rounded-3xl p-6 shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="text-white md:text-xl font-bold py-3 px-6 rounded-full inline-block">
+          <div className="text-blue-600 md:text-xl font-bold py-3 px-6 rounded-full inline-block">
             Select Your Numbers
           </div>
 
@@ -68,7 +68,7 @@ const NumberLineSelector = () => {
             </button>
             <button
               onClick={handleClear}
-              className="px-2 sm:px-3 py-1.5 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all duration-200 text-xs  font-bold flex items-center gap-1 sm:gap-2"
+              className="px-2 sm:px-3 py-1.5 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all duration-200 text-xs font-bold flex items-center gap-1 sm:gap-2"
             >
               <span className="text-xs sm:text-sm">✕</span>
               Clear
@@ -86,8 +86,8 @@ const NumberLineSelector = () => {
                 border-2 transition-all duration-200
                 ${
                   selectedNumbers[index]
-                    ? "bg-blue-950 text-white border-blue-100 scale-105"
-                    : "border-gray-200"
+                    ? "bg-blue-500 text-white border-blue-500 scale-105"
+                    : "border-gray-300"
                 }
               `}
             >
@@ -97,18 +97,18 @@ const NumberLineSelector = () => {
         </div>
 
         {/* Numbers Grid */}
-        <div className="grid grid-cols-6 sm:grid-cols-7 md:grid-cols-8 gap-2 mb-6">
+        <div className="grid grid-cols-7 gap-2 mb-6">
           {numbers.map((number) => (
             <button
               key={number}
               onClick={() => handleNumberClick(number)}
               className={`
                 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg font-medium
-                border-2 transition-all duration-200 hover:scale-105 active:scale-95
+                border transition-all duration-200 hover:scale-105 active:scale-95
                 ${
                   selectedNumbers.includes(number)
-                    ? "bg-blue-950 text-white border-blue-100"
-                    : "bg-white text-gray-700 border-gray-200 hover:border-blue-500 hover:text-blue-500"
+                    ? "bg-blue-500 text-white border-blue-500"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-blue-500 hover:text-blue-500"
                 }
               `}
             >
@@ -133,8 +133,8 @@ const NumberLineSelector = () => {
           transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]
           ${
             selectedNumbers.length === 5 && !isAdding
-              ? "bg-gradient-to-r from-blue-500 via-purple-500 to-fuchsia-500 hover:from-blue-600 hover:via-purple-600 hover:to-fuchsia-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] transform hover:-translate-y-1"
-              : "bg-blue-100 text-gray-400 cursor-not-allowed"
+              ? "bg-yellow-400 hover:bg-yellow-500 text-blue-600 font-bold shadow-lg transform hover:-translate-y-1"
+              : "bg-gray-100 text-gray-400 font-bold cursor-not-allowed"
           }
         `}
       >
