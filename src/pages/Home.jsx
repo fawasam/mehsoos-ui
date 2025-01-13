@@ -24,7 +24,7 @@ const Home = () => {
 
         {/* <HowItWorks /> */}
         <LatestDrawResult />
-        <RecentWinners />
+        {/* <RecentWinners /> */}
         {/* <Collaboration /> */}
         {/* <Services /> */}
         {/* <Pricing /> */}

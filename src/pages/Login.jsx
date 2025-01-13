@@ -23,6 +23,13 @@ const Login = () => {
     email: "",
     password: "",
   });
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const [errors, setErrors] = useState({});
 
@@ -87,7 +94,7 @@ const Login = () => {
             toast.success(res?.data?.message);
 
             const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
-            sessionStorage.removeItem("redirectAfterLogin"); 
+            sessionStorage.removeItem("redirectAfterLogin");
 
             navigate(redirectUrl || "/user-profile");
           })

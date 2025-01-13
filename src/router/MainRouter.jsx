@@ -15,6 +15,9 @@ import Footer from "../components/Footer";
 import Swiper from "../components/swiper";
 import AgeVerification from "../components/AgeVerification";
 import Logout from "../pages/Logout";
+import PaymentSuccess from "../pages/PaymentSuccess";
+import CheckoutForm from "../pages/Checkout2";
+import Return from "../pages/Return";
 
 const Layout = ({ children }) => (
   <>
@@ -33,6 +36,22 @@ const MainRoute = () => {
         <Layout>
           <Swiper />
           <Home />
+        </Layout>
+      ),
+    },
+    {
+      path: PathConstants.RETURN,
+      element: (
+        <Layout>
+          <Return />
+        </Layout>
+      ),
+    },
+    {
+      path: PathConstants.CHECKOUT2,
+      element: (
+        <Layout>
+          <CheckoutForm />
         </Layout>
       ),
     },
@@ -105,6 +124,14 @@ const MainRoute = () => {
       element: (
         <Layout>
           <HowItWorksPage />,
+        </Layout>
+      ),
+    },
+    {
+      path: PathConstants.PAYMENT_SUCCESS,
+      element: (
+        <Layout>
+          <PaymentSuccess />,
         </Layout>
       ),
     },

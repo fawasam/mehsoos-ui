@@ -24,10 +24,10 @@ const Hero = () => {
 
       <div className="container relative" ref={parallaxRef}>
         <div className="relative z-1 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]">
-          <h1 className="h1 mt-24">
+          <h1 className="h1 mt-24 mb-8">
             Celebrate life-changing possibilities with{" "}
             <span className="inline-block relative">
-              Mahsooz{" "}
+              MahzoozEuroMillion{" "}
               <img
                 src={curve}
                 className="absolute top-full left-0 w-full xl:-mt-2"
@@ -45,8 +45,8 @@ const Hero = () => {
             into the best – and luckiest – day of the week!
             </p> */}
           <div className="mt-6 md:mt-2">
-            <Button href="/pricing" white>
-              Buy Now
+            <Button href="/ticket" white>
+              Play Now
             </Button>
           </div>
         </div>

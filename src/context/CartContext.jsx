@@ -14,7 +14,7 @@ const cartReducer = (state, action) => {
       const newItem = {
         id: Date.now(),
         numbers: action.payload.numbers,
-        price: 35, // AED 35 as shown in the image
+        price: 5, // AED 35 as shown in the image
       };
       return {
         ...state,

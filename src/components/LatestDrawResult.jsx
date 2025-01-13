@@ -2,24 +2,22 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 
 const LatestDrawResult = () => {
-  const drawNumbers = [8, 11, 17, 20, 23,];
+  const drawNumbers = [8, 11, 17, 20, 23];
   const matchResults = [
     { match: "5", winners: 0 },
     { match: "4", winners: 0 },
-    { match: "3", winners: 4 },
-    { match: "5+0, 4+1", winners: 183 },
-    { match: "3+1, 2+1, 1+1, 0+1", winners: "12,135" },
+    { match: "3", winners: 0 },
   ];
 
   const luckyResults = [
-    { ticket: "BY4934604", prize: "AED 100,000" },
-    { ticket: "AP1493831", prize: "AED 100,000" },
-    { ticket: "CP6663669", prize: "AED 100,000" },
+    { ticket: "BY4934604", prize: "EUR 400,000" },
+    { ticket: "AP1493831", prize: "EUR 400,000" },
+    { ticket: "CP6663669", prize: "EUR 400,000" },
   ];
 
   return (
     <div
-      className="w-full max-w-7xl mx-auto backdrop-blur-sm"
+      className="w-full max-w-7xl mx-auto backdrop-blur-sm my-10"
       style={{
         borderRadius: "3rem",
         background: "linear-gradient(90deg, #2E8AAB, #6a509a)",
@@ -81,7 +79,6 @@ const LatestDrawResult = () => {
                   <span className="text-gray-400">{result.prize}</span>
                 </div>
               ))}
-              <div className="text-center text-3xl text-gray-600 pt-2">...</div>
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonGradient from "../../assets/svg/ButtonGradient";
 import { useCart } from "../../context/CartContext";
-import Footer from "../Footer";
-import Header from "../Header";
+
 import Section from "../Section";
 import { Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +11,13 @@ const Cart = () => {
   const { items, total, removeFromCart } = useCart();
   const { token } = useUser();
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -32,6 +38,8 @@ const Cart = () => {
       setIsProcessing(false);
     }
   };
+
+  console.log(items);
 
   return (
     <>
@@ -70,7 +78,7 @@ const Cart = () => {
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="text-white font-bold">
-                              AED {item.price}
+                              {item.price} EUR
                             </div>
                             <button
                               onClick={() => removeFromCart(item.id)}
@@ -89,7 +97,7 @@ const Cart = () => {
                           Total Amount
                         </div>
                         <div className="text-2xl font-bold text-white">
-                          AED {total}
+                          {total} EUR
                         </div>
                       </div>
                     </div>

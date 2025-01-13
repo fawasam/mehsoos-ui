@@ -1,5 +1,5 @@
 import api from "../services/api.interceptor";
-import { Calendar, Ticket, Wallet, ArrowRight } from "lucide-react";
+import { Calendar, Ticket, Wallet } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const UserDetail = ({ data }) => {
@@ -117,7 +117,7 @@ const UserDetail = ({ data }) => {
         </div>
 
         {/* Upcoming Draws Section */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <h3 className="text-white text-2xl font-bold mb-6 flex items-center gap-2">
             Upcoming Draws
             <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-transparent rounded-full ml-2"></div>
@@ -153,7 +153,7 @@ const UserDetail = ({ data }) => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
