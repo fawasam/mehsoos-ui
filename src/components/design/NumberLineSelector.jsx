@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
+import { Zap } from "lucide-react";
 
 const NumberLineSelector = () => {
   const { addToCart } = useCart();
@@ -53,15 +54,26 @@ const NumberLineSelector = () => {
       <div className="bg-gradient-to-r from-[#07081E] to-blue-950 rounded-3xl p-6 shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="bg-gradient-to-r from-blue-950 to-blue-950 text-white text-xl font-bold py-3 px-6 rounded-full inline-block">
+          <div className="text-white md:text-xl font-bold py-3 px-6 rounded-full inline-block">
             Select Your Numbers
           </div>
-          <button
-            onClick={handleQuickPick}
-            className="px-4 py-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition-all duration-200 text-sm font-bold"
-          >
-            Quick Pick
-          </button>
+
+          <div className="flex gap-2">
+            <button
+              onClick={handleQuickPick}
+              className="px-2 sm:px-3 py-1.5 rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200 text-xs font-bold flex items-center gap-1 sm:gap-2"
+            >
+              <Zap size={14} className="hidden sm:block" />
+              Quick Pick
+            </button>
+            <button
+              onClick={handleClear}
+              className="px-2 sm:px-3 py-1.5 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all duration-200 text-xs  font-bold flex items-center gap-1 sm:gap-2"
+            >
+              <span className="text-xs sm:text-sm">✕</span>
+              Clear
+            </button>
+          </div>
         </div>
 
         {/* Selected Numbers Display */}
@@ -72,9 +84,11 @@ const NumberLineSelector = () => {
               className={`
                 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold 
                 border-2 transition-all duration-200
-                ${selectedNumbers[index]
-                  ? "bg-blue-950 text-white border-blue-100 scale-105"
-                  : "border-gray-200"}
+                ${
+                  selectedNumbers[index]
+                    ? "bg-blue-950 text-white border-blue-100 scale-105"
+                    : "border-gray-200"
+                }
               `}
             >
               {selectedNumbers[index] || ""}
@@ -91,9 +105,11 @@ const NumberLineSelector = () => {
               className={`
                 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg font-medium
                 border-2 transition-all duration-200 hover:scale-105 active:scale-95
-                ${selectedNumbers.includes(number)
-                  ? "bg-blue-950 text-white border-blue-100"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-blue-500 hover:text-blue-500"}
+                ${
+                  selectedNumbers.includes(number)
+                    ? "bg-blue-950 text-white border-blue-100"
+                    : "bg-white text-gray-700 border-gray-200 hover:border-blue-500 hover:text-blue-500"
+                }
               `}
             >
               {number}
@@ -101,24 +117,8 @@ const NumberLineSelector = () => {
           ))}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex justify-between items-center">
-          <div className="flex gap-4">
-            <button
-              onClick={handleQuickPick}
-              className="p-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-              title="Shuffle"
-            >
-              🔄
-            </button>
-            <button
-              onClick={handleClear}
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-400 text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-              title="Clear"
-            >
-              ✕
-            </button>
-          </div>
+        {/* Numbers Counter */}
+        <div className="flex justify-end items-center">
           <div className="text-sm font-medium text-gray-500">
             {selectedNumbers.length}/5 numbers selected
           </div>
@@ -131,9 +131,10 @@ const NumberLineSelector = () => {
         disabled={selectedNumbers.length !== 5 || isAdding}
         className={`mt-6 w-full py-4 rounded-xl text-lg font-bold
           transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]
-          ${selectedNumbers.length === 5 && !isAdding
-            ? "bg-gradient-to-r from-blue-500 via-purple-500 to-fuchsia-500 hover:from-blue-600 hover:via-purple-600 hover:to-fuchsia-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] transform hover:-translate-y-1"
-            : "bg-blue-100 text-gray-400 cursor-not-allowed"
+          ${
+            selectedNumbers.length === 5 && !isAdding
+              ? "bg-gradient-to-r from-blue-500 via-purple-500 to-fuchsia-500 hover:from-blue-600 hover:via-purple-600 hover:to-fuchsia-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] transform hover:-translate-y-1"
+              : "bg-blue-100 text-gray-400 cursor-not-allowed"
           }
         `}
       >

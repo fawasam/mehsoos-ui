@@ -36,15 +36,15 @@ const Ticket = ({ className = "" }) => {
               <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-200 via-cyan-200 to-purple-200 bg-clip-text text-transparent mb-4">
                 Guaranteed Lucky Chance Draw
               </h3>
-              {/* <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-300 to-pink-200 bg-clip-text text-transparent">
+              <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-300 to-pink-200 bg-clip-text text-transparent">
                 AED 100,000 * 7 Winners
-              </p> */}
+              </p>
             </div>
 
             {/* Entry price */}
             <div className="text-center mb-8">
               <p className="text-xl sm:text-2xl bg-gradient-to-r from-cyan-300 to-blue-200 bg-clip-text text-transparent font-bold">
-                1 Entry for 5 EUR Only
+                1 Entry for AED 50
               </p>
             </div>
 
